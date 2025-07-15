@@ -35,7 +35,6 @@ class Forgot extends StatelessWidget {
                 color: Colors.white,
                 borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
               ),
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 20),
               child: SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.only(left: 30,right: 30),

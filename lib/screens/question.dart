@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:internshipproject11/screens/Questionseach1.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:internshipproject11/models/question.dart';
 import 'answer.dart';
@@ -80,10 +81,11 @@ class _QuestionPageState extends State<QuestionPage> {
               color: Colors.black,
             ),
           ),
-          actions: const [
+          actions: [
             Padding(
-              padding: EdgeInsets.only(right: 16.0),
-              child: Icon(Icons.search, color: Color(0xff339D44), size: 24),
+              padding: const EdgeInsets.only(right: 16.0),
+              child: IconButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context)=> questionsearch1()));
+                }, icon: Icon(Icons.search,color: Color(0xff339D44,),)),
             ),
           ],
           bottom: PreferredSize(
