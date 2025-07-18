@@ -178,7 +178,7 @@ class _add_videoState extends State<add_video> {
                                   title: Column(
                                     crossAxisAlignment: CrossAxisAlignment.center,
                                     children: [
-                                      Image.asset("Assets/images/tick.jpg", width: 48, height: 48,),
+                                      Image.asset("assets/images/tick2.jpg", width: 48, height: 48,),
                                       Text("Uploaded", style: TextStyle(fontSize: 23.03 ,fontWeight:
                                       FontWeight.bold,fontFamily: 'Raleway',color: Color(0xFF292929),),),
                                     ],

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dashbord.dart';
 import 'message.dart';
-import 'profile.dart';
+import 'Profile.dart';
 import 'question.dart';
 import 'trending.dart';
 
