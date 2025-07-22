@@ -4,9 +4,51 @@ import 'forgot.dart';
 import 'navigationabr.dart';
 import 'registration.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({super.key});
 
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+
+// FocusNodes
+  FocusNode emailFocus = FocusNode();
+  FocusNode passwordFocus = FocusNode();
+
+// Focus state variables
+  bool isEmailFocused = false;
+  bool isPasswordFocused = false;
+
+  @override
+  void initState() {
+    super.initState();
+    emailFocus.addListener(() {
+      setState(() {
+        isEmailFocused = emailFocus.hasFocus;
+      });
+    });
+
+    passwordFocus.addListener(() {
+      setState(() {
+        isPasswordFocused = passwordFocus.hasFocus;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    email.dispose();
+    password.dispose();
+
+    emailFocus.dispose();
+    passwordFocus.dispose();
+
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
@@ -59,40 +101,54 @@ class Login extends StatelessWidget {
                         style: TextStyle(color: Colors.grey),
                       ),
                       const SizedBox(height: 30),
-                      TextField(
-                        controller: TextEditingController(text: "khurramabbasi@gmail.com"),
-                        decoration: InputDecoration(
-                          labelText: "name",
-                          labelStyle: const TextStyle(color: Colors.green),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(10),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 12),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(
+                            color: isEmailFocused ? Color(0xFF339D44) : Color(0xFFD4D4D4),
+                            width: 1.5,
                           ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.green, width: 2),
-                            borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: TextField(
+                          controller: email,
+                          focusNode: emailFocus,
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            labelText: "Email",
+                            labelStyle: TextStyle(fontSize: 13.33, fontWeight: FontWeight.w400,
+                              fontFamily: 'Raleway', color: isEmailFocused ? Color(0xFF339D44) : Color(0xFFB4B4B4),
+                            ),
                           ),
                         ),
                       ),
-
-                      const SizedBox(height: 20),
-
-                      // Password field
-                      TextField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          labelStyle: const TextStyle(color: Colors.green),
-                          labelText: "Password",
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(10),
+                      SizedBox(height: 20,),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 12),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(
+                            color: isPasswordFocused ? Color(0xFF339D44) : Color(0xFFD4D4D4),
+                            width: 1.5,
                           ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.green, width: 2),
-                            borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: TextField(
+                          controller: password,
+                          focusNode: passwordFocus,
+                          keyboardType: TextInputType.visiblePassword,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            labelText: "Password",
+                            labelStyle: TextStyle(fontSize: 13.33, fontWeight: FontWeight.w400,
+                              fontFamily: 'Raleway', color: isPasswordFocused? Color(0xFF339D44) : Color(0xFFB4B4B4),
+                            ),
                           ),
                         ),
-                      ), SizedBox(height: 20,),
+                      ),
+                      SizedBox(height: 20,),
                       Align(
                         alignment: Alignment.topRight,
                         child: TextButton(onPressed: (){
@@ -114,7 +170,7 @@ class Login extends StatelessWidget {
                             ),
                           ),
                           onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>bottomnavbar()));
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>Bottomview()));
                             // Handle next
                           },
                           child: const Text("Login",style: TextStyle(color: Colors.white),),
@@ -125,7 +181,7 @@ class Login extends StatelessWidget {
                         "Don't have an account?",
                         style: TextStyle(color: Colors.grey),
                       ),
-                      const SizedBox(height: 5),
+                      const SizedBox(height: 20),
 
                       Align(
                         alignment: Alignment.centerLeft, // This is the key

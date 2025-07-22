@@ -9,7 +9,24 @@ class answered extends StatefulWidget {
 
 class _answeredState extends State<answered> {
   @override
-  TextEditingController answer = TextEditingController();
+  TextEditingController adresscontroller = TextEditingController();
+  FocusNode adressFocus = FocusNode();
+  bool isadressFocused = false;
+  void initState() {
+    super.initState();
+    adressFocus.addListener(() {
+      setState(() {
+        isadressFocused = adressFocus.hasFocus;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    adresscontroller.dispose();
+    adressFocus.dispose();
+    super.dispose();
+  }
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,37 +114,32 @@ class _answeredState extends State<answered> {
               SizedBox(
                 height: 24,
               ),
-              SizedBox(
-                height: 115,
-                width: 320,
-                child: TextFormField(
-                  controller: answer,
-                  keyboardType: TextInputType.multiline,
-                  maxLines: null,
-                  minLines: 5,
-                  decoration: InputDecoration(
-                    label: Text(
-                      "Enter you answer",
-                      style: TextStyle(
-                        fontSize: 13.33,
-                        fontWeight: FontWeight.w400,
-                        fontFamily: 'Raleway',
-                        color: Color(0xFFB4B4B4),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(
+                    color: isadressFocused ? Color(0xFF339D44) : Color(0xFFD4D4D4),
+                    width: 1.5,
+                  ),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: TextFormField(
+                    controller: adresscontroller,
+                    focusNode: adressFocus,
+                    keyboardType: TextInputType.multiline,
+                    maxLines: null,
+                    minLines: 3,
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      labelText: "Enter your answer",
+                      labelStyle: TextStyle(fontSize: 13.33, fontWeight: FontWeight.w400,
+                        fontFamily: 'Raleway', color: isadressFocused ? Color(0xFF339D44) : Color(0xFFB4B4B4),
                       ),
                     ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Color(0xFFD4D4D4)),
-                      // inactive border
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Color(0xFF339D44), width: 2), // active border
-                      borderRadius: BorderRadius.circular(8),
-                    ),
                   ),
-                ),
-              ),
+                ),),
               SizedBox(
                 height: 370,
               ),

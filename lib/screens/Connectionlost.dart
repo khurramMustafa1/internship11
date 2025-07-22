@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:internshipproject11/screens/404.dart';
 
 class connection_lost extends StatefulWidget {
   const connection_lost({super.key});
@@ -55,10 +56,10 @@ class _connection_lostState extends State<connection_lost> {
                     width: 128,
                     child: ElevatedButton(
                       onPressed: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(builder: (context) => Register2()),
-                        // );
+                        Navigator.push(
+                          context,
+                        MaterialPageRoute(builder: (context) => four_zero_four()),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xFF339D44), // Button color

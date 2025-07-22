@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:internshipproject11/screens/Exit.dart';
+import 'package:internshipproject11/screens/Nointernet.dart';
 
 class setting extends StatefulWidget {
   const setting({super.key});
@@ -27,7 +29,9 @@ class _settingState extends State<setting> {
               children: [
                 Text("Account", style: TextStyle(fontSize: 13.13,fontWeight:
                 FontWeight.w500,fontFamily: 'Raleway',color: Color(0xFF292929),),),
-                Icon(Icons.arrow_forward_ios,color: Color(0xFFD4D4D4),)
+                IconButton(onPressed: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>No_internet()));
+                }, icon: Icon(Icons.arrow_forward_ios,color: Color(0xFFD4D4D4),))
 
               ],
             ),
@@ -48,9 +52,8 @@ class _settingState extends State<setting> {
               children: [
                 Image.asset("assets/images/logout.jpg", width: 24, height: 24,),
                 SizedBox(width: 8,),
-                Text("Logout", style: TextStyle(fontSize: 13.13,fontWeight:
-                FontWeight.bold,fontFamily: 'Raleway',color: Color(0xFFF24E1E),),),
-
+                TextButton(onPressed: (){Navigator.push(context, MaterialPageRoute(builder: (context)=>ExitAppScreen()));}, child: Text( "Logout", style: TextStyle(fontSize: 13.13,fontWeight:
+                FontWeight.bold,fontFamily: 'Raleway',color: Color(0xFFF24E1E),),),)
 
               ],
             ),

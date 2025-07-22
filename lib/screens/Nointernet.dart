@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:internshipproject11/screens/NodataFound.dart';
 
 class No_internet extends StatefulWidget {
   const No_internet({super.key});
@@ -35,10 +36,10 @@ class _No_internetState extends State<No_internet> {
                     width: 128,
                     child: ElevatedButton(
                       onPressed: () {
-                        // Navigator.push(
-                        //   context,
-                        //   MaterialPageRoute(builder: (context) => Register2()),
-                        // );
+                        Navigator.push(
+                          context,
+                           MaterialPageRoute(builder: (context) => no_data_found()),
+                         );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xFFFFFFFF), // Button color

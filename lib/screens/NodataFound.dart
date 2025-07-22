@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:internshipproject11/screens/Connectionlost.dart';
 import 'package:internshipproject11/screens/navigationabr.dart';
 
 class no_data_found extends StatefulWidget {
@@ -38,7 +39,7 @@ class _no_data_foundState extends State<no_data_found> {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => bottomnavbar()),
+                      MaterialPageRoute(builder: (context) => connection_lost()),
                     );
                   },
                   style: ElevatedButton.styleFrom(

@@ -12,24 +12,32 @@ class _Dashbord extends State<Dashbord> {
   @override
   List<homemodel> model=[
     homemodel(
-      image: 'assets/images/question.jpg',
+      image: 'assets/images/question1.png',
       title: '224',
       subtitle: 'Total Questions',
+      imageWidth:58,
+      imageHeight: 58,
     ),
     homemodel(
       image: 'assets/images/tick.jpg',
       title: '154',
       subtitle: 'Answered \n Questions',
+      imageWidth: 48,
+      imageHeight: 48,
     ),
     homemodel(
       image: 'assets/images/f3.jpg',
       title: '1.5k',
       subtitle: 'Total Views',
+      imageWidth: 48,
+      imageHeight: 48,
     ),
     homemodel(
       image: 'assets/images/f4.jpg',
       title: '12',
       subtitle: 'total videos',
+      imageWidth: 48,
+      imageHeight: 48,
     ),
 
 
@@ -77,31 +85,35 @@ class _Dashbord extends State<Dashbord> {
                       ),
                     ],
                   ),
-                  child: Row(
-                    children: [
-                      SizedBox(width: 10,),
-                      Image.asset(
-                        model[i].image,
-                        width: 58,
-                        height: 58,
-                      ),
-                      SizedBox(width: 3,),
-                      Expanded(
-                        child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(model[i].title,style: TextStyle(fontSize: 23.04,fontWeight:
-                              FontWeight.bold,fontFamily: 'Raleway',color: Color(0xFF292929),)),
-
-                              Text(model[i].subtitle,style: TextStyle(fontSize: 9.26,fontWeight:
-                              FontWeight.w400,fontFamily: 'Raleway',color: Color(0xFF292929),)),
-                            ]
-
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 19),
+                    child: Row(
+                      children: [
+                        SizedBox(width: 10,),
+                        Image.asset(
+                          model[i].image,
+                          width: model[i].imageWidth,
+                          height: model[i].imageHeight,
+                          fit: BoxFit.contain,
                         ),
-                      )
+                        SizedBox(width: 10,),
+                        Expanded(
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(model[i].title,style: TextStyle(fontSize: 23.04,fontWeight:
+                                FontWeight.bold,fontFamily: 'Raleway',color: Color(0xFF292929),)),
 
-                    ],
+                                Text(model[i].subtitle,style: TextStyle(fontSize: 9.26,fontWeight:
+                                FontWeight.w400,fontFamily: 'Raleway',color: Color(0xFF292929),)),
+                              ]
+
+                          ),
+                        )
+
+                      ],
+                    ),
                   ),
                 );
 

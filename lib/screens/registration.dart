@@ -4,10 +4,60 @@ import 'package:internshipproject11/screens/login.dart';
 import 'registration2.dart';
 
 
-class Registration extends StatelessWidget {
+class Registration extends StatefulWidget {
   const Registration({super.key});
 
   @override
+  State<Registration> createState() => _RegistrationState();
+}
+
+class _RegistrationState extends State<Registration> {
+  @override
+  TextEditingController name = TextEditingController();
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  TextEditingController confirmpassword = TextEditingController();
+
+// FocusNodes
+  FocusNode nameFocus = FocusNode();
+  FocusNode emailFocus = FocusNode();
+  FocusNode passwordFocus = FocusNode();
+  FocusNode confirmPasswordFocus = FocusNode();
+
+// Focus state variables
+  bool isNameFocused = false;
+  bool isEmailFocused = false;
+  bool isPasswordFocused = false;
+  bool isConfirmPasswordFocused = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    nameFocus.addListener(() {
+      setState(() {
+        isNameFocused = nameFocus.hasFocus;
+      });
+    });
+
+    emailFocus.addListener(() {
+      setState(() {
+        isEmailFocused = emailFocus.hasFocus;
+      });
+    });
+
+    passwordFocus.addListener(() {
+      setState(() {
+        isPasswordFocused = passwordFocus.hasFocus;
+      });
+    });
+
+    confirmPasswordFocus.addListener(() {
+      setState(() {
+        isConfirmPasswordFocused = confirmPasswordFocus.hasFocus;
+      });
+    });
+  }
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
 
@@ -58,78 +108,101 @@ class Registration extends StatelessWidget {
                         style: TextStyle(color: Colors.grey),
                       ),
                       const SizedBox(height: 30),
-                      TextField(
-                        controller: TextEditingController(text: "khurram abbasi"),
-                        decoration: InputDecoration(
-                          labelText: "Name",
-                          labelStyle: const TextStyle(color: Colors.green),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(10),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 12),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(
+                            color: isNameFocused ? Color(0xFF339D44) : Color(0xFFD4D4D4),
+                            width: 1.5,
                           ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.green, width: 2),
-                            borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: TextField(
+                          controller: name,
+                          focusNode: nameFocus,
+                          keyboardType: TextInputType.name,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            labelText: "name",
+                            labelStyle: TextStyle(fontSize: 13.33, fontWeight: FontWeight.w400,
+                              fontFamily: 'Raleway', color: isNameFocused ? Color(0xFF339D44) : Color(0xFFB4B4B4),
+                            ),
                           ),
                         ),
                       ),
-
-                      const SizedBox(height: 20),
-                      // Email field
-                      TextField(
-                        decoration: InputDecoration(
-                          labelText: "Email",
-                          labelStyle: const TextStyle(color: Colors.green),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(10),
+                      SizedBox(height: 20,),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 12),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(
+                            color: isEmailFocused ? Color(0xFF339D44) : Color(0xFFD4D4D4),
+                            width: 1.5,
                           ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.green, width: 2),
-                            borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: TextField(
+                          controller: email,
+                          focusNode: emailFocus,
+                          keyboardType: TextInputType.emailAddress,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            labelText: "Email",
+                            labelStyle: TextStyle(fontSize: 13.33, fontWeight: FontWeight.w400,
+                              fontFamily: 'Raleway', color: isEmailFocused ? Color(0xFF339D44) : Color(0xFFB4B4B4),
+                            ),
                           ),
                         ),
                       ),
-
-                      const SizedBox(height: 20),
-                      // Password field
-                      TextField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          labelStyle: const TextStyle(color: Colors.green),
-                          labelText: "Password",
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(10),
+                      SizedBox(height: 20,),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 12),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(
+                            color: isPasswordFocused ? Color(0xFF339D44) : Color(0xFFD4D4D4),
+                            width: 1.5,
                           ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.green, width: 2),
-                            borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: TextField(
+                          controller: password,
+                          focusNode: passwordFocus,
+                          keyboardType: TextInputType.visiblePassword,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            labelText: "Password",
+                            labelStyle: TextStyle(fontSize: 13.33, fontWeight: FontWeight.w400,
+                              fontFamily: 'Raleway', color: isPasswordFocused ? Color(0xFF339D44) : Color(0xFFB4B4B4),
+                            ),
                           ),
                         ),
                       ),
-
-                      const SizedBox(height: 20),
-                      // Confirm Password field
-                      TextField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          labelText: "Confirm Password",
-                          labelStyle: const TextStyle(color: Colors.green),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
+                      SizedBox(height: 20,),
+                      Container(
+                        padding: EdgeInsets.symmetric(horizontal: 12),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(
+                            color: isConfirmPasswordFocused? Color(0xFF339D44) : Color(0xFFD4D4D4),
+                            width: 1.5,
                           ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.grey),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: const BorderSide(color: Colors.green, width: 2),
-                            borderRadius: BorderRadius.circular(10),
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: TextField(
+                          controller: confirmpassword,
+                          focusNode: confirmPasswordFocus,
+                          keyboardType: TextInputType.phone,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            labelText: "confirm pasword",
+                            labelStyle: TextStyle(fontSize: 13.33, fontWeight: FontWeight.w400,
+                              fontFamily: 'Raleway', color: isConfirmPasswordFocused ? Color(0xFF339D44) : Color(0xFFB4B4B4),
+                            ),
                           ),
                         ),
                       ),
-
                       const SizedBox(height: 58),
                       // Next button
                       SizedBox(
@@ -150,13 +223,13 @@ class Registration extends StatelessWidget {
                         ),
                       ),
 
-                      const SizedBox(height: 15),
+                      const SizedBox(height: 23),
 
                       const Text(
                         "Already have an account?",
                         style: TextStyle(color: Colors.grey),
                       ),
-                      const SizedBox(height: 5),
+                      const SizedBox(height: 20),
 
                       Align(
                         alignment: Alignment.centerLeft, // This is the key

@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:internshipproject11/models/Reviewmodel.dart';
 import 'package:internshipproject11/screens/EditProfile.dart';
@@ -57,7 +56,7 @@ class _profileState extends State<profile> {
                     MaterialPageRoute(builder: (context) => setting()),
                   );
                 },
-                child: Image.asset("assets/images/Setting.jpg", width: 24, height: 24,)),
+                child: Image.asset("assets/images/setting.png", width: 24, height: 24,)),
             SizedBox(width: 30,),
           ],
         ),
@@ -111,7 +110,7 @@ class _profileState extends State<profile> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Image.asset("assets/images/edit.jpg", width: 24, height: 24,),
+                          Image.asset("assets/images/edit1.png", width: 24, height: 24,),
                           SizedBox(width: 10,),
                           Text("Edit Profile")
 
@@ -133,7 +132,7 @@ class _profileState extends State<profile> {
                     onTap: (){
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => bottomnavbar()),
+                        MaterialPageRoute(builder: (context) => Bottomview()),
                       );
                     },
                     child: Text("See Dashboard", style: TextStyle(fontSize: 9.26,fontWeight:

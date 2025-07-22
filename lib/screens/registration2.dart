@@ -16,9 +16,52 @@ String? selectedExpertise;
 class _registration2State extends State<registration2> {
   @override
   TextEditingController adresscontroller = TextEditingController();
+  TextEditingController qualification = TextEditingController();
+  TextEditingController contact = TextEditingController();
 
+// FocusNodes
+  FocusNode qualificationFocus = FocusNode();
+  FocusNode contactFocus = FocusNode();
+  FocusNode adressFocus = FocusNode();
+// Focus state variables
+  bool isqualificationFocused = false;
+  bool iscontactFocused = false;
+  bool isadressFocused = false;
+  @override
+  void initState() {
+    super.initState();
+    qualificationFocus.addListener(() {
+      setState(() {
+        isqualificationFocused = qualificationFocus.hasFocus;
+      });
+    });
+
+    contactFocus.addListener(() {
+      setState(() {
+        iscontactFocused = contactFocus.hasFocus;
+      });
+    });
+    adressFocus.addListener(() {
+      setState(() {
+        isadressFocused = adressFocus.hasFocus;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    qualification.dispose();
+    contact.dispose();
+    adresscontroller.dispose();
+
+    qualificationFocus.dispose();
+    contactFocus.dispose();
+    adressFocus.dispose();
+    super.dispose();
+  }
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.only(top: 45, left: 30, right: 30),
         child: SingleChildScrollView(
@@ -113,22 +156,25 @@ class _registration2State extends State<registration2> {
                 ),
               ),
               const SizedBox(height: 20),
-              TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  labelText: "Qualification",
-                  labelStyle: const TextStyle(color: Colors.grey),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 12),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(
+                    color: isqualificationFocused ? Color(0xFF339D44) : Color(0xFFD4D4D4),
+                    width: 1.5,
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide:
-                    const BorderSide(color: Colors.green, width: 2),
-                    borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: TextField(
+                  controller: qualification,
+                  focusNode: qualificationFocus,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    labelText: "Qualification",
+                    labelStyle: TextStyle(fontSize: 13.33, fontWeight: FontWeight.w400,
+                      fontFamily: 'Raleway', color: isqualificationFocused ? Color(0xFF339D44) : Color(0xFFB4B4B4),
+                    ),
                   ),
                 ),
               ),
@@ -165,34 +211,53 @@ class _registration2State extends State<registration2> {
                 ),
               ),
               SizedBox(height: 20),
-              TextFormField(
-                controller: adresscontroller,
-                keyboardType: TextInputType.multiline,
-                maxLines: null,
-                minLines: 3,
-                decoration: InputDecoration(
-                  labelText: 'Address',
-                  alignLabelWithHint: true,
-                  border: OutlineInputBorder(),
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(
+                    color: isadressFocused ? Color(0xFF339D44) : Color(0xFFD4D4D4),
+                    width: 1.5,
+                  ),
+                  borderRadius: BorderRadius.circular(8),
                 ),
-              ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  child: TextFormField(
+                    controller: adresscontroller,
+                    focusNode: adressFocus,
+                    keyboardType: TextInputType.multiline,
+                    maxLines: null,
+                    minLines: 3,
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      labelText: "adress",
+                      labelStyle: TextStyle(fontSize: 13.33, fontWeight: FontWeight.w400,
+                        fontFamily: 'Raleway', color: isadressFocused ? Color(0xFF339D44) : Color(0xFFB4B4B4),
+                      ),
+                    ),
+                  ),
+                ),),
               const SizedBox(height: 20),
-              TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  labelText: "Contact",
-                  labelStyle: const TextStyle(color: Colors.grey),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 12),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(
+                    color: iscontactFocused? Color(0xFF339D44) : Color(0xFFD4D4D4),
+                    width: 1.5,
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide:
-                    const BorderSide(color: Colors.green, width: 2),
-                    borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: TextField(
+                  controller: contact,
+                  focusNode: contactFocus,
+                  keyboardType: TextInputType.text,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    labelText: "contact",
+                    labelStyle: TextStyle(fontSize: 13.33, fontWeight: FontWeight.w400,
+                      fontFamily: 'Raleway', color: iscontactFocused ? Color(0xFF339D44) : Color(0xFFB4B4B4),
+                    ),
                   ),
                 ),
               ),
