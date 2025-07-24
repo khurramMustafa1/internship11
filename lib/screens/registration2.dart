@@ -317,7 +317,7 @@ class _registration2State extends State<registration2> {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) => Login()),
+                                              builder: (context) => login()),
                                         );
                                       },
                                       style: ElevatedButton.styleFrom(
@@ -361,7 +361,7 @@ class _registration2State extends State<registration2> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => Registration()),
+                            builder: (context) =>Register1()),
                       );
                     },
                     child: const Text(

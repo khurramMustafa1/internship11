@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
-
-import 'forgot.dart';
-import 'navigationabr.dart';
-import 'registration.dart';
-
-class Login extends StatefulWidget {
-  const Login({super.key});
+import 'package:internshipproject11/screens/forgot.dart';
+import 'package:internshipproject11/screens/navigationabr.dart';
+import 'package:internshipproject11/screens/registration.dart';
+import 'package:internshipproject11/services/auth.dart';
+import 'package:string_validator/string_validator.dart';
+class login extends StatefulWidget {
+  const login({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<login> createState() => _loginState();
 }
 
-class _LoginState extends State<Login> {
+class _loginState extends State<login> {
+  @override
+  bool isLoading = false;
+  // Controllers
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
 
@@ -26,6 +29,8 @@ class _LoginState extends State<Login> {
   @override
   void initState() {
     super.initState();
+
+
     emailFocus.addListener(() {
       setState(() {
         isEmailFocused = emailFocus.hasFocus;
@@ -37,6 +42,7 @@ class _LoginState extends State<Login> {
         isPasswordFocused = passwordFocus.hasFocus;
       });
     });
+
   }
 
   @override
@@ -49,171 +55,226 @@ class _LoginState extends State<Login> {
 
     super.dispose();
   }
-  @override
+
+
   Widget build(BuildContext context) {
-    double screenHeight = MediaQuery.of(context).size.height;
-
+    final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: Colors.white,
-      body: Stack(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-                color: Colors.white
-            ),
-          ),
-          // 🔹 Background Image
-          Image.asset(
-            'assets/images/loginback.jpg', // Make sure this image exists in assets
-            fit: BoxFit.cover,
-            width: screenHeight,
-          ),
+      body: Container(
+          width: double.infinity,
+          decoration: BoxDecoration(
 
-          // 🔹 Overlapping White Container (Starting inside image)
-          Positioned(
-            top: screenHeight*0.35,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: Container(
-              height: screenHeight*0.5,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
-              ),
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 30,right: 30),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Title
-                      SizedBox(
-                        height: 15,
-                      ),
-                      const Text(
-                        "Welcome Again",
-                        style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                      ),
-                      const SizedBox(height: 7),
-                      const Text(
-                        "Login to Access Your Account.",
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                      const SizedBox(height: 30),
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 12),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(
-                            color: isEmailFocused ? Color(0xFF339D44) : Color(0xFFD4D4D4),
-                            width: 1.5,
-                          ),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: TextField(
-                          controller: email,
-                          focusNode: emailFocus,
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            labelText: "Email",
-                            labelStyle: TextStyle(fontSize: 13.33, fontWeight: FontWeight.w400,
-                              fontFamily: 'Raleway', color: isEmailFocused ? Color(0xFF339D44) : Color(0xFFB4B4B4),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 20,),
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 12),
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          border: Border.all(
-                            color: isPasswordFocused ? Color(0xFF339D44) : Color(0xFFD4D4D4),
-                            width: 1.5,
-                          ),
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: TextField(
-                          controller: password,
-                          focusNode: passwordFocus,
-                          keyboardType: TextInputType.visiblePassword,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            labelText: "Password",
-                            labelStyle: TextStyle(fontSize: 13.33, fontWeight: FontWeight.w400,
-                              fontFamily: 'Raleway', color: isPasswordFocused? Color(0xFF339D44) : Color(0xFFB4B4B4),
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 20,),
-                      Align(
-                        alignment: Alignment.topRight,
-                        child: TextButton(onPressed: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>Forgot()));
-                        },
-                            child: Text("Forgot Password",style:
-                            TextStyle(color: Colors.green,fontSize: 13.33,fontWeight: FontWeight.w500,fontFamily: "raleway"),)),
-                      ),
-                      const SizedBox(height: 24),
-                      // Next button
-                      SizedBox(
-                        width: 315,
-                        height: 60,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.green,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                          ),
-                          onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>Bottomview()));
-                            // Handle next
-                          },
-                          child: const Text("Login",style: TextStyle(color: Colors.white),),
-                        ),
-                      ),
-                      const SizedBox(height: 23),
-                      const Text(
-                        "Don't have an account?",
-                        style: TextStyle(color: Colors.grey),
-                      ),
-                      const SizedBox(height: 20),
 
-                      Align(
-                        alignment: Alignment.centerLeft, // This is the key
-                        child: TextButton(
-                          style: TextButton.styleFrom(
-                            padding: EdgeInsets.zero, // Remove extra default padding
-                            tapTargetSize: MaterialTapTargetSize.shrinkWrap, // Optional
-                          ),
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => Registration()),
-                            );
-                          },
-                          child: const Text(
-                            "Signup",
-                            style: TextStyle(
-                              color: Colors.green,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 27.65,
-                              fontFamily: "Raleway",
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+          ),
+          child:Stack(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    color: Colors.white
                 ),
               ),
-            ),
-          ),
-        ],
+              Image.asset("assets/images/loginback.jpg", width: double.infinity,
+                height: screenHeight * 0.5, // 45% of screen height
+                fit: BoxFit.cover,),
+              Positioned(
+                top: screenHeight * 0.35, // Push it below the image
+                left: 0,
+                right: 0,
+                bottom: 0,
+                child: Container(
+                    height: screenHeight * 0.65,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(topRight:Radius.circular(25), topLeft: Radius.circular(25)),
+                    ),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 30, top: 30, right: 30, bottom: 10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(height: 5,),
+                                Text("Welcome Again!", style: TextStyle(fontSize: 23.04,fontWeight:
+                                FontWeight.bold,fontFamily: 'Raleway',color: Color(0xFF292929),),),
+                                SizedBox(height: 5,),
+                                Text("Login to Access Your Account", style: TextStyle(fontSize: 13.33,fontWeight:
+                                FontWeight.w400,fontFamily: 'Raleway',color: Color(0xFFB4B4B4),),),
+
+
+                                //Textfield for welcome page
+                                SizedBox(height: 30,),
+                                Container(
+                                  padding: EdgeInsets.symmetric(horizontal: 12),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    border: Border.all(
+                                      color: isEmailFocused ? Color(0xFF339D44) : Color(0xFFD4D4D4),
+                                      width: 1.5,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: TextField(
+                                    controller: email,
+                                    focusNode: emailFocus,
+                                    keyboardType: TextInputType.emailAddress,
+                                    decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      labelText: "Email",
+                                      labelStyle: TextStyle(fontSize: 13.33, fontWeight: FontWeight.w400,
+                                        fontFamily: 'Raleway', color: isEmailFocused ? Color(0xFF339D44) : Color(0xFFB4B4B4),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+
+
+
+                                SizedBox(height: 20,),
+                                Container(
+                                  padding: EdgeInsets.symmetric(horizontal: 12),
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    border: Border.all(
+                                      color: isPasswordFocused ? Color(0xFF339D44) : Color(0xFFD4D4D4),
+                                      width: 1.5,
+                                    ),
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                  child: TextField(
+                                    controller: password,
+                                    focusNode: passwordFocus,
+                                    keyboardType: TextInputType.number,
+                                    obscureText: true,
+                                    decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      labelText: "Password",
+                                      labelStyle: TextStyle(fontSize: 13.33, fontWeight: FontWeight.w400,
+                                        fontFamily: 'Raleway', color: isPasswordFocused ? Color(0xFF339D44) : Color(0xFFB4B4B4),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+
+                                SizedBox(height: 20,),
+
+                                Align(
+                                  alignment: Alignment.topRight,
+                                  child: TextButton(onPressed: (){
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(builder: (context) => forgotpassword()),
+                                    );
+                                  },
+                                    child: Text("Forgot Password?", style: TextStyle(fontSize: 13.33,fontWeight:
+                                    FontWeight.w500,fontFamily: 'Raleway',color: Color(0xFF339D44),),),),
+                                ),
+
+                                SizedBox(height: 24,),
+
+
+
+                                isLoading? Center(
+                                    child: CircularProgressIndicator())
+                                    :Center(
+                                  child: SizedBox(
+                                    height: 60,
+                                    width: 315,
+                                    child: ElevatedButton(
+                                      onPressed: () async {
+                                        // validation
+                                        if(email.text.isEmpty){
+                                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Email cannot be empty"),));
+                                          return;
+                                        }
+                                        if(!email.text.isEmail){
+                                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Enter valid email"),));
+                                          return;
+                                        }
+                                        if(password.text.isEmpty){
+                                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("password cannot be empty"),));
+                                          return;
+                                        }
+                                        if(password.text.length<6){
+                                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("password must be greater than 6 digits"),));
+                                          return;
+                                        }
+                                        try{
+                                          isLoading=true;
+                                          setState(() {
+
+                                          });
+                                          await AuthServies().loginUser(email: email.text, password: password.text).then((val){
+                                            isLoading=false;
+                                            setState(() {
+
+                                            });
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(builder: (context) => Bottomview()),
+                                            );
+
+                                          });
+                                        }
+                                        catch (e) {
+                                          isLoading = false;
+                                          setState(() {});
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(SnackBar(content: Text(e.toString())));
+                                        }
+
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: Color(0xFF339D44), // Button color
+                                        foregroundColor: Color(0xFFF4F4F4), // Text/icon color
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                        textStyle: TextStyle(
+                                          fontSize: 16,
+                                          fontWeight: FontWeight.w500,
+                                          fontFamily: 'Raleway',
+                                        ),
+                                      ),
+                                      child: Text("Login"),
+                                    ),
+                                  ),
+                                ),
+
+                                SizedBox(height: 23,),
+
+
+                                Text("Don’t have an account?", style: TextStyle(fontSize: 13.33,fontWeight:
+                                FontWeight.w400,fontFamily: 'Raleway',color: Color(0xFF292929),),),
+
+                              ],
+                            ),
+                          ),
+
+                          Padding(
+                            padding: const EdgeInsets.only(left: 17),
+                            child: Align(
+                              alignment: Alignment.topLeft,
+                              child: TextButton(onPressed: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => Register1()),
+                                );
+                              },
+                                child: Text("Sign Up", style: TextStyle(fontSize: 27.65,fontWeight:
+                                FontWeight.w700,fontFamily: 'Raleway',color: Color(0xFF339D44),),),),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+
+                ),
+              )
+            ],
+          )
       ),
     );
   }

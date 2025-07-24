@@ -106,7 +106,7 @@ class _onboarding_screenState extends State<onboarding_screen> {
               Padding(
                 padding: const EdgeInsets.only(left: 130,bottom: 20),
                 child:TextButton(onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Registration()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> Register1()));
                 }, child:
                 Text("Skip", style: TextStyle(fontSize: 14,fontWeight:
                 FontWeight.w400,fontFamily: 'Raleway',color: Color(0xFF339D44),),),
