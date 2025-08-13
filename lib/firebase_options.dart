@@ -23,15 +23,9 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         return windows;
       case TargetPlatform.linux:
@@ -47,30 +41,48 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyB_uk1r96pyGb1Ktyqf7b9GFMbHpfodBdI',
-    appId: '1:798004906514:web:7c91a29f1d53b7583fa6cb',
-    messagingSenderId: '798004906514',
-    projectId: 'agrimate-ed008',
-    authDomain: 'agrimate-ed008.firebaseapp.com',
-    storageBucket: 'agrimate-ed008.firebasestorage.app',
-    measurementId: 'G-K8FSP45T8B',
+    apiKey: 'AIzaSyDmi-P1BsATeTcUju7PosilXijbvSJffsU',
+    appId: '1:106364488558:web:f37f54d95c4a3eccf30f7f',
+    messagingSenderId: '106364488558',
+    projectId: 'agriexpert-e10c2',
+    authDomain: 'agriexpert-e10c2.firebaseapp.com',
+    storageBucket: 'agriexpert-e10c2.firebasestorage.app',
+    measurementId: 'G-EWWY2NDWWW',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCHtJA_Cy1pLTypEdDIn7geR9dTqVVzfw4',
-    appId: '1:798004906514:android:773e57649ef90e153fa6cb',
-    messagingSenderId: '798004906514',
-    projectId: 'agrimate-ed008',
-    storageBucket: 'agrimate-ed008.firebasestorage.app',
+    apiKey: 'AIzaSyB5Mv5UI7sB-pKWM-TEVt76gKs5i1hfN2Y',
+    appId: '1:106364488558:android:ad672063542e8642f30f7f',
+    messagingSenderId: '106364488558',
+    projectId: 'agriexpert-e10c2',
+    storageBucket: 'agriexpert-e10c2.firebasestorage.app',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyB07vEV0WOTEgHVaRCTxynyWchNlFCimSA',
+    appId: '1:106364488558:ios:9d3a375488ef994ef30f7f',
+    messagingSenderId: '106364488558',
+    projectId: 'agriexpert-e10c2',
+    storageBucket: 'agriexpert-e10c2.firebasestorage.app',
+    iosBundleId: 'com.example.agriexpert',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyB07vEV0WOTEgHVaRCTxynyWchNlFCimSA',
+    appId: '1:106364488558:ios:9d3a375488ef994ef30f7f',
+    messagingSenderId: '106364488558',
+    projectId: 'agriexpert-e10c2',
+    storageBucket: 'agriexpert-e10c2.firebasestorage.app',
+    iosBundleId: 'com.example.agriexpert',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyB_uk1r96pyGb1Ktyqf7b9GFMbHpfodBdI',
-    appId: '1:798004906514:web:85fa44e9c1ac0a443fa6cb',
-    messagingSenderId: '798004906514',
-    projectId: 'agrimate-ed008',
-    authDomain: 'agrimate-ed008.firebaseapp.com',
-    storageBucket: 'agrimate-ed008.firebasestorage.app',
-    measurementId: 'G-XPF38E3DMM',
+    apiKey: 'AIzaSyDmi-P1BsATeTcUju7PosilXijbvSJffsU',
+    appId: '1:106364488558:web:8f2e134e568e7852f30f7f',
+    messagingSenderId: '106364488558',
+    projectId: 'agriexpert-e10c2',
+    authDomain: 'agriexpert-e10c2.firebaseapp.com',
+    storageBucket: 'agriexpert-e10c2.firebasestorage.app',
+    measurementId: 'G-G2ZN8PSHNR',
   );
 }
