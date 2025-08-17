@@ -1,11 +1,10 @@
-
+import 'package:firebase_auth/firebase_auth.dart' show FirebaseAuth;
 import 'package:flutter/material.dart';
 import 'package:internshipproject11/screen/home.dart';
-import 'package:internshipproject11/screen/profile.dart';
+import 'package:internshipproject11/screen/message.dart';
+import 'package:internshipproject11/screen/profile.dart' show profile;
 import 'package:internshipproject11/screen/question.dart' show question;
 import 'package:internshipproject11/screen/trending.dart' show trending;
-
-import 'message.dart' show message;
 
 class bottomnavbar extends StatefulWidget {
   const bottomnavbar({super.key});
@@ -16,13 +15,37 @@ class bottomnavbar extends StatefulWidget {
 
 class _bottomnavbarState extends State<bottomnavbar> {
   int selectedindex = 0;
+  String? uid;
+  bool isLoading = true;
 
-  final List<Widget> screenlist = [
+  @override
+  void initState() {
+    super.initState();
+    getUid();
+  }
+
+  Future<void> getUid() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      setState(() {
+        uid = user.uid;
+        isLoading = false;
+      });
+    } else {
+      print("❌ FirebaseAuth.currentUser is null!");
+      // Handle redirect to login or error state
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+  List<Widget> get screenlist => [
     home(image: '', title: '', subtitle: ''),
     question(),
     trending(),
     message(),
-    profile()
+   profile(userId: uid!,),
   ];
 
   final List<String> icons = [
@@ -62,7 +85,7 @@ class _bottomnavbarState extends State<bottomnavbar> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  // ✅ Green indicator with bottom curves only
+
                   AnimatedContainer(
                     duration: Duration(milliseconds: 200),
                     height: 6,

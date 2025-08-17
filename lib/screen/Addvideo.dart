@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:internshipproject11/screen/trending.dart' show trending;
-
 class add_video extends StatefulWidget {
   const add_video({super.key});
 
@@ -38,7 +37,7 @@ class _add_videoState extends State<add_video> {
     if (picked != null) {
       setState(() {
         selectedImage = File(picked.path);
-        thumbnailName = picked.name; // 👈 update thumbnail name
+        thumbnailName = picked.name;
       });
     }
   }

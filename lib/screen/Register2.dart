@@ -3,8 +3,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:internshipproject11/Provider/provider1.dart';
+import 'package:internshipproject11/Services/ImageApi.dart' show ImageUploadService;
 import 'package:internshipproject11/screen/login.dart';
-import '../Services/ImageApi.dart';
+import 'package:provider/provider.dart';
 import '../Services/User.dart';
 import '../models/UserModel.dart';
 import 'package:uuid/uuid.dart';
@@ -20,7 +22,6 @@ class Register2 extends StatefulWidget {
   @override
   State<Register2> createState() => _Register2State();
 }
-
 
 class _Register2State extends State<Register2> {
   @override
@@ -397,6 +398,8 @@ class _Register2State extends State<Register2> {
                         ImageUploadService imageService = ImageUploadService();
                         String profileUrl = await imageService.uploadImage(ProfileImage!);
                         String degreeUrl = await imageService.uploadImage(degreeImage!);
+                        Provider.of<UserProvider>(context, listen: false)
+                            .setProfilePicture(profileUrl);
 
                         // Create user model
                         UserModel model = UserModel(

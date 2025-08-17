@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -94,7 +93,7 @@ class _AnsweredState extends State<Answered> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              /// 👤 Author Row
+
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -140,7 +139,7 @@ class _AnsweredState extends State<Answered> {
 
               SizedBox(height: 15.5),
 
-              /// 📝 Question Title
+
               Text(
                 questionTitle ?? "",
                 style: TextStyle(
@@ -153,7 +152,7 @@ class _AnsweredState extends State<Answered> {
 
               SizedBox(height: 24),
 
-              /// ✍️ Answer Input
+
               SizedBox(
                 height: 115,
                 width: 320,
@@ -189,7 +188,7 @@ class _AnsweredState extends State<Answered> {
 
               SizedBox(height: 390),
 
-              /// ✅ Send Button
+
               Center(
                 child: SizedBox(
                   height: 60,

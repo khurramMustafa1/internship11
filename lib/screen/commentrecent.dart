@@ -1,18 +1,16 @@
-
 import 'package:flutter/material.dart';
-import 'package:internshipproject11/models/comment.dart';
-
 import '../Services/comments.dart';
 import '../models/all_model.dart';
+import '../models/comment.dart' show CommentsModel;
 
-class comment_relevent extends StatefulWidget {
-  const comment_relevent({super.key});
+class comment_recent extends StatefulWidget {
+  const comment_recent({super.key});
 
   @override
-  State<comment_relevent> createState() => _comment_releventState();
+  State<comment_recent> createState() => _comment_recentState();
 }
 
-class _comment_releventState extends State<comment_relevent> {
+class _comment_recentState extends State<comment_recent> {
   @override
 
   List<AllComments> model = [
